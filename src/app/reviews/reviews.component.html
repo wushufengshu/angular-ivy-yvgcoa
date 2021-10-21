@@ -1,0 +1,81 @@
+<div style="width:70%;margin:auto">
+  <p>Leave a review</p>
+  <form #reviewForm="ngForm" (ngSubmit)="submitReview(reviewForm)">
+    <div class="inputGroup">
+      <input
+        type="text"
+        name="fullName"
+        placeholder="Full Name"
+        required
+        ngModel
+        minlength="2"
+        #fullName="ngModel"
+      />
+      <div *ngIf="fullName.touched && fullName.invalid">
+        <small *ngIf="fullName.errors?.required">Full name is required</small>
+        <small *ngIf="fullName.errors?.minlength">Full name is invalid</small>
+      </div>
+    </div>
+    <div class="inputGroup">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        email
+        ngModel
+        minlength="2"
+        #email="ngModel"
+      />
+      <div *ngIf="email.touched && email.invalid">
+        <small *ngIf="email.errors?.required">Email is required. </small>
+        <small *ngIf="email.errors?.minlength || email.invalid"
+          >Email is invalid</small
+        >
+      </div>
+    </div>
+    <div class="inputGroup">
+      <select
+        id="rating"
+        name="rating"
+        style="width:20%"
+        required
+        ngModel
+        #rating="ngModel"
+      >
+        <option *ngFor="let rate of ratings" [value]="rate">{{ rate }}</option>
+      </select>
+      <div *ngIf="rating.touched && rating.invalid">
+        <small *ngIf="rating.errors?.required">Rating is required</small>
+      </div>
+    </div>
+    <div class="inputGroup">
+      <textarea
+        name="review"
+        cols="30"
+        rows="5"
+        placeholder="Review"
+        ngModel
+        required
+        #review="ngModel"
+      ></textarea>
+      <div *ngIf="review.touched && review.invalid">
+        <small *ngIf="review.errors?.required">Review is required</small>
+      </div>
+    </div>
+
+    <div class="inputGroup">
+      <button [disabled]="reviewForm.invalid" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+<h2>All Reviews</h2>
+
+<div class="review-list" *ngFor="let review of allReviews">
+  <div class="user-review">
+    {{ review.fullName }} • {{ review.email }} • {{ review.rating }}
+    <p>
+      {{ review.review }}
+    </p>
+  </div>
+</div>

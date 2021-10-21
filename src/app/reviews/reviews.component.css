@@ -1,0 +1,21 @@
+.inputGroup {
+  margin: 10px 0px;
+}
+button {
+  float: right;
+}
+textarea {
+  width: 100%;
+}
+.review-list p {
+  padding-left: 10px;
+}
+.user-review {
+  padding: 3px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+small {
+  color:rgb(233, 98, 98)
+}
